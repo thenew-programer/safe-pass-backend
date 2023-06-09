@@ -77,7 +77,7 @@ export const login = async (req, res) => {
 				expires: tomorrow,
 				secure: true,
 				httpOnly: true,
-				domain: 'vercel.app',
+				domain: 'safe-pass-backend.vercel.app',
 				path: '/'
 			})
 			.send('welcome')
