@@ -76,10 +76,7 @@ export const login = async (req, res) => {
 			.cookie('__pass', JSON.stringify(user.authentification.sessionToken), {
 				expires: tomorrow,
 				sameSite: 'none',
-				secure: true,
-				httpOnly: true,
-				domain: 'safe-pass-backend.vercel.app',
-				path: '/'
+				secure: true
 			})
 			.send('welcome')
 	} catch (err) {
