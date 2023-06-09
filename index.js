@@ -19,8 +19,8 @@ mongoose.connect(process.env.USERS_DATABASE_URL);
 
 
 const allowedOrigins = [
-	'http://localhost:3000/',
-	'https://safe-passfront.vercel.app/',
+	'http://localhost:3000',
+	'https://safe-passfront.vercel.app',
 	'https://precious-pasca-c5a6aa.netlify.app'
 ];
 const corsOptions = {
@@ -28,7 +28,6 @@ const corsOptions = {
 	credentials: true,
 	optionsSuccessStatus: 200,
 }
-app.set('trust proxy', 1);
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(cookieParser());
