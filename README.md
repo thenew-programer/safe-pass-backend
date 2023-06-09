@@ -17,3 +17,4 @@ contains function that communicates with the db
 
 ## Usage
 to use this app the only this you need to change is the `.env.example`. Add your informations as described in the files and move the name of the file from `.env.example` to `.env`.
+Vercel Deploy
