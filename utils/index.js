@@ -50,7 +50,7 @@ export const toCSV = (arr) => {
 		});
 		const csvData = arr.map(item => Object.values(item).join(','));
 		const csvContent = csvData.join('\n');
-		writeFile('../../my-passwords.csv', csvContent, 'utf8', err => {
+		writeFile('../my-passwords.csv', csvContent, 'utf8', err => {
 			if (err) {
 				reject(err);
 			} else {

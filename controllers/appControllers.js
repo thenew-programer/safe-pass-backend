@@ -117,7 +117,7 @@ export const downloadPass = async (req, res, next) => {
 			return item;
 		});
 		await toCSV(data);
-		return res.status(200).sendFile(path.resolve('../../my-passwords.csv'))
+		return res.status(200).sendFile(path.resolve('../my-passwords.csv'))
 	} catch (err) {
 		next(getError('SERVER FAILED', 500));
 	}
