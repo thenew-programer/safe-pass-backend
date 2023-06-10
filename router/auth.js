@@ -19,7 +19,7 @@ export default (router) => {
 	router.get('/showpasswords', showPass);
 	router.post('/decrypt', decryptPass);
 	router.get('/getpasswordcount', getPassCount);
-	router.delete('/removePass', removePass);
+	router.post('/removePass', removePass);
 	router.patch('/updatePass', updatePass);
 	router.get('/downloadPass', downloadPass);
 	router.get('/:pass', root);
