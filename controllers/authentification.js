@@ -3,6 +3,7 @@ import {
 } from "../db/users.js";
 import { authentification, getError, random } from "../utils/users.js";
 import { createTable, removeTable } from "../db/app.js";
+import { updateUserById } from "../db/users.js";
 
 export const register = async (req, res) => {
 	try {
@@ -90,9 +91,7 @@ export const deleteUser = async (req, res) => {
 
 		const deletedUser = await deleteUserById(id);
 
-		await removeTable(deletedUser.userTable);
-
-		return res.status(200).send('User has been deleted');
+		return res.status(200).json(deletedUser);
 	} catch (err) {
 		return res.status(500).json({ err: err });
 	}
@@ -116,9 +115,11 @@ export const updateUser = async (req, res, next) => {
 		}
 
 		salt = random();
-		user.authentification.password = authentification(salt, newPass);
-		user.authentification.salt = salt;
-		await user.save();
+		password = authentification(salt, newPass);
+		updateUserById(user._id, {
+			'authentification.password': password,
+			'authentification.salt': salt
+		})
 
 		return res.status(200).send("passoword reset successfully");
 	} catch (err) {
