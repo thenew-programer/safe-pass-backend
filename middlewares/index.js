@@ -71,11 +71,11 @@ export const isAuthenticated = async (req, res, next) => {
 
 export const isOwner = async (req, res, next) => {
 	try {
-		const id = req.identity._id;
+		const id = req.params.id;
 
-		const currentUserId = get(req, 'identity._id');
+		const currentUserId = req.identity._id;
 
-		if (!currentUserId || currentUserId.toString() !== id) {
+		if (!currentUserId || currentUserId !== id) {
 			return res.status(403).send('Forbiden');
 		}
 

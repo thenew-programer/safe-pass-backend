@@ -86,7 +86,7 @@ export const login = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
 	try {
-		const { id } = req.params;
+		const id = req.identity._id;
 
 		const deletedUser = await deleteUserById(id);
 
@@ -104,7 +104,7 @@ export const updateUser = async (req, res, next) => {
 		const { oldPass, newPass } = req.body;
 
 		if (!oldPass || !newPass) {
-			return res.status(400).send("unable to update password").end();
+			return res.status(400).send("unable to update password");
 		}
 
 		const user = await getUserById(id).select(
@@ -113,7 +113,7 @@ export const updateUser = async (req, res, next) => {
 
 		const expectedPass = authentification(user.authentification.salt, oldPass);
 		if (expectedPass !== user.authentification.password) {
-			return res.status(401).send("old password incorrect").end();
+			return res.status(401).send("old password incorrect");
 		}
 
 		salt = random();
@@ -121,7 +121,7 @@ export const updateUser = async (req, res, next) => {
 		user.authentification.salt = salt;
 		user.save();
 
-		return res.status(200).send("passoword reset successfully").end();
+		return res.status(200).send("passoword reset successfully");
 	} catch (err) {
 		next(getError("SERVER STATUS", 500));
 	}
