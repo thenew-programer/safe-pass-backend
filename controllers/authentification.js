@@ -92,7 +92,7 @@ export const deleteUser = async (req, res) => {
 
 		await removeTable(deletedUser.userTable);
 
-		return res.status(203).send('User has been deleted');
+		return res.status(200).send('User has been deleted');
 	} catch (err) {
 		return res.status(500).json({ err: err });
 	}
@@ -100,10 +100,9 @@ export const deleteUser = async (req, res) => {
 
 export const updateUser = async (req, res, next) => {
 	try {
-		const id = req.identity._id;
-		const { oldPass, newPass } = req.body;
+		const { id, oldPass, newPass } = req.body;
 
-		if (!oldPass || !newPass) {
+		if (!oldPass || !newPass || !id) {
 			return res.status(400).send("unable to update password");
 		}
 
@@ -119,7 +118,7 @@ export const updateUser = async (req, res, next) => {
 		salt = random();
 		user.authentification.password = authentification(salt, newPass);
 		user.authentification.salt = salt;
-		user.save();
+		await user.save();
 
 		return res.status(200).send("passoword reset successfully");
 	} catch (err) {
