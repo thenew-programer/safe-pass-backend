@@ -114,11 +114,8 @@ export const updateUser = async (req, res, next) => {
 			return res.status(401).send("old password incorrect");
 		}
 
-		salt = random();
-		await updateUserById(user._id, {
-			'authentification.password': authentification(salt, newPass),
-			'authentification.salt': salt
-		})
+		user.authentification.password = authentification(user.authentification.salt, newPass);
+		await user.save();
 
 		return res.status(200).send("passoword reset successfully");
 	} catch (err) {
