@@ -115,9 +115,8 @@ export const updateUser = async (req, res, next) => {
 		}
 
 		salt = random();
-		password = authentification(salt, newPass);
-		updateUserById(user._id, {
-			'authentification.password': password,
+		await updateUserById(user._id, {
+			'authentification.password': authentification(salt, newPass),
 			'authentification.salt': salt
 		})
 
