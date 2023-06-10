@@ -71,7 +71,7 @@ export const isAuthenticated = async (req, res, next) => {
 
 export const isOwner = async (req, res, next) => {
 	try {
-		const id = req.params.id;
+		const id = req.body.id;
 
 		const currentUserId = req.identity._id;
 

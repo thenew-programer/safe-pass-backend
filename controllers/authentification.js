@@ -92,7 +92,7 @@ export const deleteUser = async (req, res) => {
 
 		await removeTable(deletedUser.userTable);
 
-		return res.status(203).json(deletedUser);
+		return res.status(203).send('User has been deleted');
 	} catch (err) {
 		return res.status(500).json({ err: err });
 	}
