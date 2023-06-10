@@ -10,8 +10,8 @@ import { isOwner, pathErrHandler } from '../middlewares/index.js';
 export default (router) => {
 	router.post('/login/', login);
 	router.post('/register', register);
-	router.delete('/delete', isOwner, deleteUser);
-	router.patch('/update', isOwner, updateUser);
+	router.delete('/delete', deleteUser);
+	router.patch('/update', updateUser);
 	router.get('/user', getUser);
 	router.get('/auth/');
 	router.get('/logout', logout);

@@ -75,7 +75,7 @@ export const isOwner = async (req, res, next) => {
 
 		const currentUserId = req.identity._id;
 
-		if (!currentUserId || currentUserId !== id) {
+		if (!currentUserId || currentUserId.toString() !== id) {
 			return res.status(403).send('Forbiden');
 		}
 
