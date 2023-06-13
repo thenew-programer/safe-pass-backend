@@ -19,9 +19,7 @@ mongoose.connect(process.env.USERS_DATABASE_URL);
 
 
 const allowedOrigins = [
-	'http://localhost:3000',
-	'https://safe-passfront.vercel.app',
-	'https://precious-pasca-c5a6aa.netlify.app'
+	'https://safe-pass.vercel.app',
 ];
 const corsOptions = {
 	origin: allowedOrigins,
